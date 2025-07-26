@@ -4,7 +4,7 @@ info:
   program: logseq-srs
   args:
     - show
-    - /tmp/.tmpLCDrYm
+    - /tmp/.tmpzv5z2K
     - "--help"
   page_lines:
     - - ""
@@ -21,7 +21,7 @@ Arguments:
   [PROMPT_FINGERPRINT]  Fingerprint of the card's prompt. Use metadata command to find one
 
 Options:
-      --format <FORMAT>  [default: clean] [possible values: clean, typst, sixel, storage]
+      --format <FORMAT>  [default: clean] [possible values: clean, typst, sixel, storage, kitty, i-term]
   -v, --verbose...       Increase logging verbosity
   -q, --quiet...         Decrease logging verbosity
   -h, --help             Print help

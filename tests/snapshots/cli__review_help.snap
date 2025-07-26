@@ -4,7 +4,7 @@ info:
   program: logseq-srs
   args:
     - review
-    - /tmp/.tmpn3PhEY
+    - /tmp/.tmpwYt7nV
     - "--help"
   page_lines:
     - - ""
@@ -21,7 +21,7 @@ Arguments:
   [PROMPT_FINGERPRINT]  Fingerprint of the card's prompt. Use metadata command to find one
 
 Options:
-      --format <FORMAT>  [default: clean] [possible values: clean, typst, sixel, storage]
+      --format <FORMAT>  [default: clean] [possible values: clean, typst, sixel, storage, kitty, i-term]
   -v, --verbose...       Increase logging verbosity
       --at <TIMESTAMP>   RFC3999 timestamp to use as the time of the review. Affects both selection and updating
   -q, --quiet...         Decrease logging verbosity
