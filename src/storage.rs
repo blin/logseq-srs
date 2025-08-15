@@ -73,7 +73,6 @@ fn find_card_list_items(file_raw: &str) -> Result<Vec<mdast::ListItem>> {
         [Node::Paragraph(_)] | [] => {
             // If it's just a paragraph, there are no cards.
             // If it's empty, there are no cards.
-            print!("file did not contain a list");
             return Ok(vec![]);
         }
         [Node::Paragraph(_), Node::List(l)] => l,
