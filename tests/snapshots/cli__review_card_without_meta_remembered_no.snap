@@ -4,7 +4,7 @@ info:
   program: losrs
   args:
     - review
-    - /tmp/.tmpLyCnci
+    - /tmp/.tmphudQTy
     - "--at=2025-11-22T15:04:05.123456789Z"
   page_lines:
     - "- Not card"

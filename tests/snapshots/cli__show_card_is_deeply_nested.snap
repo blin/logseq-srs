@@ -4,7 +4,8 @@ info:
   program: losrs
   args:
     - show
-    - /tmp/.tmphXgJVe
+    - /tmp/.tmpXWCaHO
+  envs: {}
   page_lines:
     - - "- Not card"
       - "- induction"

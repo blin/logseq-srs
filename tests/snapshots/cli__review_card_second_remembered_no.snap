@@ -4,7 +4,7 @@ info:
   program: losrs
   args:
     - review
-    - /tmp/.tmpRxw3SI
+    - /tmp/.tmpF4i2aa
     - "--at=2025-11-23T15:04:05.123456789Z"
   page_lines:
     - "- Not card"
@@ -14,8 +14,8 @@ info:
     - "- Not card"
     - ""
   interaction_meta:
-    remembered: "false"
     expected type of interaction: review
+    remembered: "false"
 ---
 - Not card
 - What is a sphere? #card

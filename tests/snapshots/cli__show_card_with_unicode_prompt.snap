@@ -4,7 +4,8 @@ info:
   program: losrs
   args:
     - show
-    - /tmp/.tmpo82Wse
+    - /tmp/.tmpTK1Nol
+  envs: {}
   page_lines:
     - - "- Not card"
       - "- Какова связь между углами $\\\\alpha$ и $\\\\gamma_{1}$ на изображении относительно секущей?"

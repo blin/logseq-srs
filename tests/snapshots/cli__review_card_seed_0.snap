@@ -4,7 +4,7 @@ info:
   program: losrs
   args:
     - review
-    - /tmp/.tmpEwM2qq
+    - /tmp/.tmpPw9fg6
     - "--at=2025-09-01T15:04:05.123456789Z"
     - "--seed=0"
   page_lines:

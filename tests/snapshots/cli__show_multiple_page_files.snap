@@ -4,7 +4,8 @@ info:
   program: losrs
   args:
     - show
-    - /tmp/.tmphVXNxA
+    - /tmp/.tmpAxaaoN
+  envs: {}
   page_lines:
     - - "- Not card"
       - "- What is the volume of a sphere (symbolic)? #card"

@@ -9,6 +9,9 @@ use clap::Args;
 use clap::Parser;
 use clap::Subcommand;
 use clap::ValueEnum;
+use figment::providers::Serialized;
+use serde::Deserialize;
+use serde::Serialize;
 
 use crate::output::OutputFormat;
 use crate::output::OutputSettings;
@@ -30,6 +33,9 @@ pub mod types;
 struct Cli {
     #[command(subcommand)]
     command: Commands,
+
+    #[command(flatten)]
+    config: Config,
 }
 
 fn parse_hex(src: &str) -> Result<Fingerprint> {
@@ -52,7 +58,7 @@ struct CardRefArgs {
     prompt_fingerprint: Option<Fingerprint>,
 }
 
-#[derive(Args)]
+#[derive(Args, Serialize, Deserialize, Debug)]
 struct OutputArgs {
     #[arg(
         long,
@@ -92,7 +98,25 @@ struct OutputArgs {
     line_height_scaling: f32,
 }
 
-#[derive(Clone, ValueEnum)]
+impl Default for OutputArgs {
+    fn default() -> Self {
+        Self {
+            format: OutputFormatArg::Clean,
+            ppi: 96.0,
+            base_font_size: 12,
+            line_height_scaling: 1.2,
+        }
+    }
+}
+
+#[derive(Args, Serialize, Deserialize, Debug, Default)]
+struct Config {
+    #[command(flatten)]
+    output: OutputArgs,
+}
+
+#[derive(Clone, ValueEnum, Serialize, Deserialize, Debug)]
+#[serde(rename_all = "kebab-case")]
 enum OutputFormatArg {
     Clean,
     Typst,
@@ -128,21 +152,15 @@ impl From<&OutputArgs> for OutputSettings {
 
 #[derive(Subcommand)]
 enum Commands {
-    /// print cards
+    /// Print cards
     Show {
         #[command(flatten)]
         card_ref: CardRefArgs,
-
-        #[command(flatten)]
-        output_args: OutputArgs,
     },
-    /// review cards
+    /// Review cards
     Review {
         #[command(flatten)]
         card_ref: CardRefArgs,
-
-        #[command(flatten)]
-        output_args: OutputArgs,
 
         /// RFC3999 timestamp to use as the time of the review.
         /// Affects both selection and updating.
@@ -153,16 +171,27 @@ enum Commands {
         #[arg(long)]
         seed: Option<u64>,
     },
-    /// prints metadata for cards
+    /// Print metadata for cards
     Metadata {
         #[command(flatten)]
         card_ref: CardRefArgs,
     },
-    /// fix metadata for cards
+    /// Fix metadata for cards
     FixMetadata {
         #[command(flatten)]
         card_ref: CardRefArgs,
     },
+    /// Manage configuration
+    Config {
+        #[command(subcommand)]
+        command: ConfigCommands,
+    },
+}
+
+#[derive(Subcommand)]
+enum ConfigCommands {
+    /// show the merged configuration
+    Show,
 }
 
 fn act_on_card_ref<F>(path: &Path, prompt_fingerprint: Option<Fingerprint>, f: F) -> Result<()>
@@ -197,33 +226,35 @@ fn shuffle_slice<T>(s: &mut [T], seed: u64) {
 }
 
 fn main() -> Result<()> {
+    use figment::Figment;
+    use figment::providers::Env;
+
     let cli = Cli::parse();
+    let config: Config = Figment::new()
+        .merge(Serialized::defaults(cli.config))
+        .merge(Env::prefixed("LOSRS__").split("__"))
+        .extract()?;
 
     match cli.command {
-        Commands::Show { card_ref: CardRefArgs { path, prompt_fingerprint }, output_args } => {
-            let output_settings = (&output_args).into();
+        Commands::Show { card_ref: CardRefArgs { path, prompt_fingerprint } } => {
+            let output_settings = (&config.output).into();
             act_on_card_ref(&path, prompt_fingerprint, |card_metas| {
                 for cm in card_metas {
                     let card = extract_card_by_ref(&cm.card_ref).with_context(|| {
-                    format!(
-                        "When extracting card with fingerprint {} from {}, card with prompt prefix: {}",
-                        cm.card_ref.prompt_fingerprint,
-                        cm.card_ref.source_path.display(),
-                        cm.prompt_prefix
-                    )
-                })?;
+                                format!(
+                                    "When extracting card with fingerprint {} from {}, card with prompt prefix: {}",
+                                    cm.card_ref.prompt_fingerprint,
+                                    cm.card_ref.source_path.display(),
+                                    cm.prompt_prefix
+                                )
+                            })?;
                     show_card(&card, &output_settings)?
                 }
                 Ok(())
             })?;
         }
-        Commands::Review {
-            card_ref: CardRefArgs { path, prompt_fingerprint },
-            output_args,
-            at,
-            seed,
-        } => {
-            let output_settings = (&output_args).into();
+        Commands::Review { card_ref: CardRefArgs { path, prompt_fingerprint }, at, seed } => {
+            let output_settings = (&config.output).into();
             let at = match at {
                 Some(at) => at,
                 None => chrono::offset::Utc::now().fixed_offset(),
@@ -256,6 +287,11 @@ fn main() -> Result<()> {
                 Ok(())
             })?;
         }
+        Commands::Config { command } => match command {
+            ConfigCommands::Show => {
+                println!("{}", serde_json::to_string(&config)?)
+            }
+        },
     }
 
     Ok(())

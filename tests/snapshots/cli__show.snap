@@ -4,7 +4,8 @@ info:
   program: losrs
   args:
     - show
-    - /tmp/.tmpmYyTDk
+    - /tmp/.tmpVu890v
+  envs: {}
   page_lines:
     - - "- Not card"
       - "- What is a sphere? #card"

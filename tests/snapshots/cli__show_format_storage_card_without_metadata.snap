@@ -4,8 +4,9 @@ info:
   program: losrs
   args:
     - show
-    - /tmp/.tmp8dKgdy
-    - "--format=storage"
+    - /tmp/.tmplGE0lb
+  envs:
+    LOSRS__OUTPUT__FORMAT: Storage
   page_lines:
     - - "- Not card"
       - "- What is the antiderivative of $f(x) = x^r$ (symbolic)? #card"

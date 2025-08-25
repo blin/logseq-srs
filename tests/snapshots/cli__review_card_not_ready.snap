@@ -4,8 +4,8 @@ info:
   program: losrs
   args:
     - review
-    - /tmp/.tmpvtE06X/page.md
-    - "--at=2024-01-01T00:00:00Z"
+    - /tmp/.tmp1XTPyA
+    - "--at=2024-01-01T15:04:05.123456789Z"
   page_lines:
     - "- Not card"
     - "- What is a sphere? #card"

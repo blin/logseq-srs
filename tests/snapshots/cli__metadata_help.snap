@@ -4,15 +4,15 @@ info:
   program: losrs
   args:
     - metadata
-    - /tmp/.tmpFqDbI0
     - "--help"
+  envs: {}
   page_lines:
     - - ""
 ---
 success: true
 exit_code: 0
 ----- stdout -----
-prints metadata for cards
+Print metadata for cards
 
 Usage: losrs metadata <PATH> [PROMPT_FINGERPRINT]
 

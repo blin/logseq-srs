@@ -4,7 +4,8 @@ info:
   program: losrs
   args:
     - show
-    - /tmp/.tmpqS7Z2o
+    - /tmp/.tmpGPlb1b
+  envs: {}
   page_lines:
     - - "- Not card"
       - "- What is the relationship between angles $\\\\alpha$ and $\\\\gamma_{1}$ in the picture relative to the transversal?"

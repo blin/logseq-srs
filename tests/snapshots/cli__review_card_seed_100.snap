@@ -4,7 +4,7 @@ info:
   program: losrs
   args:
     - review
-    - /tmp/.tmpNKsJcU
+    - /tmp/.tmpUjdCR1
     - "--at=2025-09-01T15:04:05.123456789Z"
     - "--seed=100"
   page_lines:
@@ -29,8 +29,8 @@ info:
     - "- Not card"
     - ""
   interaction_meta:
-    expected type of interaction: "review first card, then nope out"
     first card with given seed: "What is Gregg Simplified for \"N\" (description)?"
+    expected type of interaction: "review first card, then nope out"
 ---
 - Not card
 - Alphabet forward cards

@@ -4,8 +4,9 @@ info:
   program: losrs
   args:
     - show
-    - /tmp/.tmpiOfVyp
-    - "--format=storage"
+    - /tmp/.tmprmg9aG
+  envs:
+    LOSRS__OUTPUT__FORMAT: Storage
   page_lines:
     - - "- Not card"
       - "- What is a sphere? #card"

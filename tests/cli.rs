@@ -142,8 +142,8 @@ test_card_output!(
 
 test_card_output!(
     show_format_clean,
-    vec!["show", "$GRAPH_ROOT", "--format=clean"],
-    vec![],
+    vec!["show", "$GRAPH_ROOT"],
+    vec![("LOSRS__OUTPUT__FORMAT", "clean")],
     vec![
         r#"- Not card
 - What is a sphere? #card
@@ -161,8 +161,8 @@ test_card_output!(
 
 test_card_output!(
     show_format_typst,
-    vec!["show", "$GRAPH_ROOT", "--format=typst"],
-    vec![],
+    vec!["show", "$GRAPH_ROOT"],
+    vec![("LOSRS__OUTPUT__FORMAT", "typst")],
     vec![
         r#"- Not card
 - What is the antiderivative of $f(x) = x^r$ (symbolic)? #card
@@ -180,8 +180,8 @@ test_card_output!(
 
 test_card_output!(
     show_format_storage,
-    vec!["show", "$GRAPH_ROOT", "--format=storage"],
-    vec![],
+    vec!["show", "$GRAPH_ROOT"],
+    vec![("LOSRS__OUTPUT__FORMAT", "storage")],
     vec![
         r#"- Not card
 - What is the antiderivative of $f(x) = x^r$ (symbolic)? #card
@@ -199,8 +199,8 @@ test_card_output!(
 
 test_card_output!(
     show_format_storage_card_without_metadata,
-    vec!["show", "$GRAPH_ROOT", "--format=storage"],
-    vec![],
+    vec!["show", "$GRAPH_ROOT"],
+    vec![("LOSRS__OUTPUT__FORMAT", "storage")],
     vec![
         r#"- Not card
 - What is the antiderivative of $f(x) = x^r$ (symbolic)? #card
@@ -212,8 +212,8 @@ test_card_output!(
 
 test_card_output!(
     show_format_storage_card_with_fsrs_metadata,
-    vec!["show", "$GRAPH_ROOT", "--format=storage"],
-    vec![],
+    vec!["show", "$GRAPH_ROOT"],
+    vec![("LOSRS__OUTPUT__FORMAT", "storage")],
     vec![
         r#"- Not card
 - What is a sphere? #card
@@ -232,8 +232,8 @@ test_card_output!(
 
 test_card_output!(
     show_format_storage_card_with_reordered_metadata,
-    vec!["show", "$GRAPH_ROOT", "--format=storage"],
-    vec![],
+    vec!["show", "$GRAPH_ROOT"],
+    vec![("LOSRS__OUTPUT__FORMAT", "storage")],
     vec![
         r#"- Not card
 - What is the antiderivative of $f(x) = x^r$ (symbolic)? #card
@@ -392,8 +392,8 @@ test_card_output!(
 
 test_card_output!(
     show_format_storage_card_is_deeply_nested,
-    vec!["show", "$GRAPH_ROOT", "--format=storage"],
-    vec![],
+    vec!["show", "$GRAPH_ROOT"],
+    vec![("LOSRS__OUTPUT__FORMAT", "storage")],
     vec![
         r#"- Not card
 - induction

@@ -4,62 +4,23 @@ info:
   program: losrs
   args:
     - show
-    - /tmp/.tmpPNpoy7
     - "--help"
+  envs: {}
   page_lines:
     - - ""
 ---
 success: true
 exit_code: 0
 ----- stdout -----
-print cards
+Print cards
 
-Usage: losrs show [OPTIONS] <PATH> [PROMPT_FINGERPRINT]
+Usage: losrs show <PATH> [PROMPT_FINGERPRINT]
 
 Arguments:
-  <PATH>
-          The path to the page file or graph root directory
-
-  [PROMPT_FINGERPRINT]
-          Fingerprint of the card's prompt. Use metadata command to find one
+  <PATH>                The path to the page file or graph root directory
+  [PROMPT_FINGERPRINT]  Fingerprint of the card's prompt. Use metadata command to find one
 
 Options:
-      --format <FORMAT>
-          [default: clean]
-          [possible values: clean, typst, storage, sixel, kitty, i-term]
-
-      --ppi <PPI>
-          Pixel density in PPI (Pixels Per Inch).
-          
-          Used with image based formats.
-          
-          [default: 96]
-
-      --base-font-size <BASE_FONT_SIZE>
-          "base" font size in points.
-          
-          Everything is scaled relative to this font size.
-          
-          It is best to set this to the same font size as your terminal font size.
-          
-          Used with image based formats.
-          
-          [default: 12]
-
-      --line-height-scaling <LINE_HEIGHT_SCALING>
-          Height of the line relative to the font size.
-          
-          Used for figuring out vertical size of the card.
-          
-          Some terminals allow scaling line height (and some scale by default), this value needs to be known to calculate the right image size.
-          
-          It is best to set this to the same line height scaling as your terminal line height scaling.
-          
-          Used with image based formats.
-          
-          [default: 1.2]
-
-  -h, --help
-          Print help (see a summary with '-h')
+  -h, --help  Print help
 
 ----- stderr -----
